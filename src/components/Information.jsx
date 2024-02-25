@@ -1,8 +1,7 @@
-import InputForm from "./inputForm";
-import { useState } from "react";
+import InputForm from "./InputForm";
+import Preview from "./Preview";
 
 function Information({ name }) {
-
   return (
     <div
       className="flex flex-col w-64 rounded-xl border-solid
@@ -10,26 +9,31 @@ function Information({ name }) {
     >
       {name === "general" ? (
         <>
-          <InputForm label="First Name" />
-          <InputForm label="Last Name" />
-          <InputForm label="Age" />
-        <button onClick={handleClick}>{content}</button>
+          <Preview name="General" />
+          {["First Name", "Last Name", "Age"].map((item) => {
+            return <InputForm label={item} />;
+          })}
         </>
       ) : name === "education" ? (
         <>
-          <InputForm label="Highschool" />
-          <InputForm label="University name" />
-          <InputForm label="Starting year" />
-          <InputForm label="Finishing year" />
-          <button onClick={handleClick}>{content}</button>
+          <Preview name="Education" />
+          {[
+            "Highschool",
+            "University name",
+            "Starting year",
+            "Finishing year",
+          ].map((item) => {
+            return <InputForm label={item} />;
+          })}
         </>
       ) : name === "experience" ? (
         <>
-          <InputForm label="Company name" />
-          <InputForm label="Starting year" />
-          <InputForm label="Finishing year" />
-          <InputForm label="Position" />
-          <button onClick={handleClick}></button>
+          <Preview name="Experience" />
+          {["Company name", "Starting year", "Finishing year", "Position"].map(
+            (item) => {
+              return <InputForm label={item} />;
+            }
+          )}
         </>
       ) : null}
     </div>
