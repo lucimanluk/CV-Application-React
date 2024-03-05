@@ -2,10 +2,25 @@ import InputForm from "./InputForm";
 import Preview from "./Preview";
 import SaveClear from "./SaveClear";
 import { useState } from "react";
+import { useEffect } from "react";
 
 
 function Information({ name }) {
   const [value, setValue] = useState(false);
+  const [string, setString] = useState('');
+ 
+  function handleChange(e) {
+    console.log(e.target.value);
+    setString(e.target.value);
+  }
+
+  function handleClick2() {
+    setString('');
+  }
+
+  useEffect(() => {
+    console.log(string); 
+  }, [string]); 
 
   function handleClick() {
     setValue(!value);
@@ -27,9 +42,9 @@ function Information({ name }) {
                   "Last Name",
                   "Age"
                 ].map((item, index) => {
-                  return <InputForm key={index} label={item} />
+                  return <InputForm key={index} label={item} string = {string} handleChange={handleChange}/>
                 })}
-                <SaveClear />
+                <SaveClear handleClick = {handleClick2}/>
               </>
             ) : null
           }
@@ -45,10 +60,10 @@ function Information({ name }) {
                   "University name",
                   "Starting year",
                   "Finishing year",
-                ].map((item) => {
-                  return <InputForm label={item} />;
+                ].map((item, index) => {
+                  return <InputForm key = {index} label={item} />;
                 })}
-                <SaveClear />
+                <SaveClear/>
               </>
             ) : null}
         </>
@@ -64,8 +79,8 @@ function Information({ name }) {
                   "Finishing year",
                   "Position"
                 ].map(
-                  (item) => {
-                    return <InputForm label={item} />;
+                  (item, index) => {
+                    return <InputForm key = {index} label={item} />;
                   })}
                 <SaveClear />
               </>
