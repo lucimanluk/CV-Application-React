@@ -2,7 +2,6 @@ import InputForm from "./InputForm";
 import Preview from "./Preview";
 import SaveClear from "./SaveClear";
 import { useState } from "react";
-import { useEffect } from "react";
 
 
 function Information({ name }) {
@@ -14,13 +13,9 @@ function Information({ name }) {
     setString(e.target.value);
   }
 
-  function handleClick2() {
+  function handleClick2(e) {
     setString('');
   }
-
-  useEffect(() => {
-    console.log(string); 
-  }, [string]); 
 
   function handleClick() {
     setValue(!value);

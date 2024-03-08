@@ -1,4 +1,4 @@
-function InputForm({label, string, handleChange, getFocus}) {
+function InputForm({label, handleChange, string}) {
   return (
     <form className="flex flex-col w-56">
       <label htmlFor={label} className="text-white">
@@ -12,7 +12,7 @@ function InputForm({label, string, handleChange, getFocus}) {
           })}
         </select>
       ) : (
-        <input type="text" className="rounded-md px-1" id={label} value = {string} onChange={handleChange}></input>
+        <input type="text" className="rounded-md px-1" id={label}  onChange={handleChange}></input>
       )}
     </form>
   );
