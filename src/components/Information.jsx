@@ -1,61 +1,24 @@
 import InputForm from "./InputForm";
 import Preview from "./Preview";
 import SaveClear from "./SaveClear";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Information({ name }) {
   const [value, setValue] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [string4, setString4] = useState("");
-  const [string5, setString5] = useState("");
+  const [highschool, setHighschool] = useState("");
+  const [university, setUniversity] = useState("");
   const [number, setNumber] = useState(1900);
-
-  function handleChange1(e) {
-    console.log(e.target.value);
-    setFirstName(e.target.value);
-  }
-
-  function handleChange2(e) {
-    console.log(e.target.value);
-    setLastName(e.target.value);
-  }
-
-  function handleChange3(e) {
-    console.log(e.target.value);
-    setAge(e.target.value);
-  }
-
-  function handleChange4(e) {
-    console.log(e.target.value);
-    setString4(e.target.value);
-  }
-
-  function handleChange5(e) {
-    console.log(e.target.value);
-    setString5(e.target.value);
-  }
-
-  function handleChange6(e) {
-    console.log(e.target.value);
-    setNumber(e.target.value);
-  }
+  const [number2, setNumber2] = useState(1900);
+  const [company, setCompany] = useState('');
+  const [position, setPosition] = useState('');
+  const [number3, setNumber3] = useState(1900);
+  const [number4, setNumber4] = useState(1900);
 
   function handleClick() {
     setValue(!value);
-  }
-
-  function handleClick2() {
-    setFirstName("");
-    setLastName("");
-    setAge("");
-  }
-
-  function handleClick3() {
-    setString4("");
-    setString5("");
-    setNumber(1900);
   }
 
   return (
@@ -76,7 +39,7 @@ function Information({ name }) {
                       key={index}
                       label={item}
                       string={firstName}
-                      handleChange={handleChange1}
+                      handleChange={(e) => { setFirstName(e.target.value) }}
                     />
                   );
                 } else if (index === 1) {
@@ -85,7 +48,7 @@ function Information({ name }) {
                       key={index}
                       label={item}
                       string={lastName}
-                      handleChange={handleChange2}
+                      handleChange={(e) => { setLastName(e.target.value) }}
                     />
                   );
                 } else if (index === 2) {
@@ -94,12 +57,17 @@ function Information({ name }) {
                       key={index}
                       label={item}
                       string={age}
-                      handleChange={handleChange3}
+                      handleChange={(e) => { setAge(e.target.value) }}
                     />
                   );
                 }
               })}
-              <SaveClear handleClick={handleClick2} />
+              <SaveClear handleClick={() => {
+                setFirstName("");
+                setLastName("");
+                setAge("");
+              }}
+              />
             </>
           ) : null}
         </>
@@ -119,8 +87,8 @@ function Information({ name }) {
                     <InputForm
                       key={index}
                       label={item}
-                      string={string4}
-                      handleChange={handleChange4}
+                      string={highschool}
+                      handleChange={(e) => { setHighschool(e.target.value) }}
                     />
                   );
                 } else if (index === 1) {
@@ -128,8 +96,8 @@ function Information({ name }) {
                     <InputForm
                       key={index}
                       label={item}
-                      string={string5}
-                      handleChange={handleChange5}
+                      string={university}
+                      handleChange={(e) => { setUniversity(e.target.value) }}
                     />
                   );
                 } else if (index === 2) {
@@ -138,12 +106,32 @@ function Information({ name }) {
                       key={index}
                       label={item}
                       number={number}
-                      handleNumberChange={handleChange6}
+                      handleNumberChange={(e) => {
+                        const newValue = e.target.value;
+                        setNumber(e.target.value);
+                        if (number2 <= newValue)
+                          setNumber2(e.target.value);
+                      }}
                     />
                   );
+                } else if (index === 3) {
+                  return (
+                    <InputForm
+                      key={index}
+                      label={item}
+                      number={number2}
+                      handleNumberChange={(e) => { setNumber2(e.target.value) }}
+                    />
+                  )
                 }
               })}
-              <SaveClear handleClick={handleClick3}/>
+              <SaveClear handleClick={() => {
+                setHighschool("");
+                setUniversity("");
+                setNumber(1900);
+                setNumber2(1900);
+              }}
+              />
             </>
           ) : null}
         </>
@@ -154,13 +142,54 @@ function Information({ name }) {
             <>
               {[
                 "Company name",
-                "Starting year",
-                "Finishing year",
                 "Position",
+                "Starting year",
+                "Finishing year"
               ].map((item, index) => {
-                return <InputForm key={index} label={item} />;
+                if (index === 0) {
+                  return <InputForm
+                    key={index}
+                    label={item} s
+                    tring={company}
+                    handleChange={(e) => { setCompany(e.target.value) }}
+                  />;
+                }
+                else if (index === 1) {
+                  return <InputForm
+                    key={index}
+                    label={item}
+                    string={position}
+                    handleChange={(e) => { setPosition(e.target.value) }}
+                  />;
+                }
+                else if (index === 2) {
+                  return <InputForm
+                    key={index}
+                    label={item}
+                    number={number3}
+                    handleNumberChange={(e) => {
+                      const newValue = e.target.value;
+                      setNumber3(e.target.value);
+                      if (number4 <= newValue)
+                        setNumber4(e.target.value);
+                    }}
+                  />;
+                }
+                else if (index === 3) {
+                  return <InputForm
+                    key={index}
+                    label={item}
+                    number={number4}
+                    handleNumberChange={(e) => { setNumber4(e.target.value) }} />;
+                }
               })}
-              <SaveClear />
+              <SaveClear handleClick={() => {
+                setCompany("");
+                setPosition("");
+                setNumber3(1900);
+                setNumber4(1900);
+              }}
+              />
             </>
           ) : null}
         </>
