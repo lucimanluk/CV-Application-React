@@ -4,7 +4,7 @@ import SaveClear from "./SaveClear";
 import { useEffect, useState } from "react";
 
 function Information({ name }) {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
@@ -24,7 +24,7 @@ function Information({ name }) {
   return (
     <div
       className="flex flex-col w-64 rounded-xl border-solid
-   border-white border-2 items-center justify-center p-2 gap-y-2"
+   border-white border-2 items-center justify-center p-2 gap-y-2 bg-white"
     >
       {name === "general" ? (
         <>
