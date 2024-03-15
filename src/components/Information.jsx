@@ -109,8 +109,9 @@ function Information({ name }) {
                       handleNumberChange={(e) => {
                         const newValue = e.target.value;
                         setNumber(e.target.value);
-                        if (number2 <= newValue)
+                        if (number2 <= newValue){
                           setNumber2(e.target.value);
+                        }
                       }}
                     />
                   );
@@ -170,8 +171,9 @@ function Information({ name }) {
                     handleNumberChange={(e) => {
                       const newValue = e.target.value;
                       setNumber3(e.target.value);
-                      if (number4 <= newValue)
+                      if (number4 <= newValue) {
                         setNumber4(e.target.value);
+                      } 
                     }}
                   />;
                 }
