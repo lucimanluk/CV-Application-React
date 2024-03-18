@@ -120,8 +120,9 @@ function Information({ name }) {
                     <InputForm
                       key={index}
                       label={item}
-                      number={number2}
-                      handleNumberChange={(e) => { setNumber2(e.target.value) }}
+                      number = {number}
+                      nr={number2}
+                      handleNumberChange={(e) => { if(number <= e.target.value) setNumber2(e.target.value) }}
                     />
                   )
                 }
