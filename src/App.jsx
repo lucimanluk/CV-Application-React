@@ -9,15 +9,24 @@ function App() {
   const [age, setAge] = useState("");
   const [highschool, setHighschool] = useState("");
   const [university, setUniversity] = useState("");
-  const [number, setNumber] = useState(1900);
-  const [number2, setNumber2] = useState(1900);
+  const [number, setEducationStartingYear] = useState(1900);
+  const [number2, setEducationFinishingYear] = useState(1900);
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [number3, setNumber3] = useState(1900);
   const [number4, setNumber4] = useState(1900);
-
+  const [passedFirstName, setPassedFirstName] = useState('');
+  const [passedLastName, setPassedLastName] = useState('');
+  const [passedAge, setPassedAge] = useState('');
+ 
   function handleClick() {
     setValue(!value);
+  }
+
+  function saveGeneralContent() {
+    setPassedFirstName(firstName);
+    setPassedLastName(lastName);
+    setPassedAge(age);
   }
 
   return (
@@ -41,6 +50,7 @@ function App() {
                   setFirstName={setFirstName}
                   setLastName={setLastName}
                   setAge={setAge}
+                  saveButton = {saveGeneralContent}
                 ></Information>
               }
               else if (item === "education") {
@@ -55,8 +65,8 @@ function App() {
                   number2={number2}
                   setHighschool={setHighschool}
                   setUniversity={setUniversity}
-                  setNumber={setNumber}
-                  setNumber2={setNumber2}
+                  setNumber={setEducationStartingYear}
+                  setNumber2={setEducationFinishingYear}
                 ></Information>
               }
                 else if (item === "experience") {
@@ -78,7 +88,7 @@ function App() {
               }
             )}
         </div>
-        <InfoContainer />
+        <InfoContainer firstName = {passedFirstName} lastName = {passedLastName} age = {passedAge}/>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import InputForm from "./InputForm";
 import Preview from "./Preview";
 import SaveClear from "./SaveClear";
-import { useEffect, useState } from "react";
 
 function Information(props) {
 
@@ -51,14 +50,7 @@ function Information(props) {
                 props.setLastName("");
                 props.setAge("");
               }}
-              handleClick2={() => {
-                if(props.firstName != "" && props.lastName!= "" && props.age != ""){
-                  console.log("You have saved the information!");
-                }
-                else {
-                  console.log("You didn't fill all the fields!");
-                }
-              }}
+              handleClick2={props.saveButton}
               />
             </>
           ) : null}
