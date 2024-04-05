@@ -1,8 +1,15 @@
 import InputForm from "./InputForm";
 import Preview from "./Preview";
 import SaveClear from "./SaveClear";
+import { useState } from "react";
 
 function Information(props) {
+
+  const [value, setValue] = useState(true);
+
+  function handleClick() {
+    setValue(!value);
+  }
 
   return (
     <div
@@ -11,17 +18,17 @@ function Information(props) {
     >
       {props.name === "general" ? (
         <>
-          <Preview name="General" value={props.value} handleClick={props.handleClick} />
-          {props.value === true ? (
+          <Preview name="General" value={value} handleClick={handleClick} />
+          {value === true ? (
             <>
-              {["First Name", "Last Name", "Age"].map((item, index) => {
+              {["Full Name", "Address", "Email"].map((item, index) => {
                 if (index === 0) {
                   return (
                     <InputForm
                       key={index}
                       label={item}
-                      string={props.firstName}
-                      handleChange={(e) => { props.setFirstName(e.target.value) }}
+                      string={props.fullName}
+                      handleChange={(e) => { props.setFullName(e.target.value) }}
                     />
                   );
                 } else if (index === 1) {
@@ -29,8 +36,8 @@ function Information(props) {
                     <InputForm
                       key={index}
                       label={item}
-                      string={props.lastName}
-                      handleChange={(e) => { props.setLastName(e.target.value) }}
+                      string={props.address}
+                      handleChange={(e) => { props.setAddress(e.target.value) }}
                     />
                   );
                 } else if (index === 2) {
@@ -38,17 +45,17 @@ function Information(props) {
                     <InputForm
                       key={index}
                       label={item}
-                      string={props.age}
-                      handleChange={(e) => { props.setAge(e.target.value) }}
+                      string={props.email}
+                      handleChange={(e) => { props.setEmail(e.target.value) }}
                     />
                   );
                 }
               })}
               <SaveClear 
               handleClick={() => {
-                props.setFirstName("");
-                props.setLastName("");
-                props.setAge("");
+                props.setFullName("");
+                props.setAddress("");
+                props.setEmail("");
               }}
               handleClick2={props.saveButton}
               />
@@ -57,8 +64,8 @@ function Information(props) {
         </>
       ) : props.name === "education" ? (
         <>
-          <Preview name="Education" value={props.value} handleClick={props.handleClick} />
-          {props.value === true ? (
+          <Preview name="Education" value={value} handleClick={handleClick} />
+          {value === true ? (
             <>
               {[
                 "Highschool",
@@ -122,8 +129,8 @@ function Information(props) {
         </>
       ) : props.name === "experience" ? (
         <>
-          <Preview name="Experience" value={props.value} handleClick={props.handleClick} />
-          {props.value === true ? (
+          <Preview name="Experience" value={value} handleClick={handleClick} />
+          {value === true ? (
             <>
               {[
                 "Company name",

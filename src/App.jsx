@@ -3,10 +3,9 @@ import InfoContainer from "./components/InfoContainer.jsx";
 import { useState } from "react";
 function App() {
 
-  const [value, setValue] = useState(true);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
   const [highschool, setHighschool] = useState("");
   const [university, setUniversity] = useState("");
   const [number, setEducationStartingYear] = useState(1900);
@@ -15,18 +14,14 @@ function App() {
   const [position, setPosition] = useState('');
   const [number3, setNumber3] = useState(1900);
   const [number4, setNumber4] = useState(1900);
-  const [passedFirstName, setPassedFirstName] = useState('');
-  const [passedLastName, setPassedLastName] = useState('');
-  const [passedAge, setPassedAge] = useState('');
- 
-  function handleClick() {
-    setValue(!value);
-  }
+  const [passedFullName, setPassedFullName] = useState('');
+  const [passedAddress, setPassedAddress] = useState('');
+  const [passedEmail, setPassedEmail] = useState('');
 
   function saveGeneralContent() {
-    setPassedFirstName(firstName);
-    setPassedLastName(lastName);
-    setPassedAge(age);
+    setPassedFullName(fullName);
+    setPassedAddress(address);
+    setPassedEmail(email);
   }
 
   return (
@@ -42,14 +37,12 @@ function App() {
                 return <Information
                   key={index}
                   name={item}
-                  value={value}
-                  handleClick={handleClick}
-                  firstName={firstName}
-                  lastName={lastName}
-                  age={age}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
-                  setAge={setAge}
+                  fullName={fullName}
+                  address={address}
+                  email={email}
+                  setFullName={setFullName}
+                  setAddress={setAddress}
+                  setEmail={setEmail}
                   saveButton = {saveGeneralContent}
                 ></Information>
               }
@@ -57,8 +50,6 @@ function App() {
                 return <Information
                   key={index}
                   name={item}
-                  value={value}
-                  handleClick={handleClick}
                   highschool={highschool}
                   university={university}
                   number={number}
@@ -73,8 +64,6 @@ function App() {
                   return <Information
                   key={index}
                   name={item}
-                  value={value}
-                  handleClick={handleClick}
                   company = {company}
                   position = {position}
                   number3 = {number3}
@@ -88,7 +77,7 @@ function App() {
               }
             )}
         </div>
-        <InfoContainer firstName = {passedFirstName} lastName = {passedLastName} age = {passedAge}/>
+        <InfoContainer fullName = {passedFullName} address = {passedAddress} email = {passedEmail}/>
       </div>
     </div>
   );
