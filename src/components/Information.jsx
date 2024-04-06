@@ -16,12 +16,12 @@ function Information(props) {
       className="flex flex-col w-64 rounded-xl border-solid
    border-white border-2 items-center justify-center p-2 gap-y-2 bg-white"
     >
-      {props.name === "general" ? (
+      {props.name === "personal information" ? (
         <>
-          <Preview name="General" value={value} handleClick={handleClick} />
+          <Preview name="Personal information" value={value} handleClick={handleClick} />
           {value === true ? (
             <>
-              {["Full Name", "Address", "Email"].map((item, index) => {
+              {["Full Name", "Address", "Email", "Phone Number"].map((item, index) => {
                 if (index === 0) {
                   return (
                     <InputForm
@@ -49,15 +49,25 @@ function Information(props) {
                       handleChange={(e) => { props.setEmail(e.target.value) }}
                     />
                   );
+                } else if (index === 3) {
+                  return (
+                    <InputForm
+                      key={index}
+                      label={item}
+                      string={props.phoneNumber}
+                      handleChange={(e) => { props.setPhoneNumber(e.target.value) }}
+                    />
+                  );
                 }
               })}
-              <SaveClear 
-              handleClick={() => {
-                props.setFullName("");
-                props.setAddress("");
-                props.setEmail("");
-              }}
-              handleClick2={props.saveButton}
+              <SaveClear
+                handleClick={() => {
+                  props.setFullName("");
+                  props.setAddress("");
+                  props.setEmail("");
+                  props.setPhoneNumber("");
+                }}
+                handleClick2={props.saveButton}
               />
             </>
           ) : null}
@@ -100,7 +110,7 @@ function Information(props) {
                       handleNumberChange={(e) => {
                         const newValue = e.target.value;
                         props.setNumber(e.target.value);
-                        if (number2 <= newValue){
+                        if (number2 <= newValue) {
                           props.setNumber2(e.target.value);
                         }
                       }}
@@ -112,7 +122,7 @@ function Information(props) {
                       key={index}
                       label={item}
                       nr={props.number2}
-                      handleNumberChange={(e) => { if(props.number <= e.target.value) props.setNumber2(e.target.value) }}
+                      handleNumberChange={(e) => { if (props.number <= e.target.value) props.setNumber2(e.target.value) }}
                     />
                   )
                 }
@@ -141,7 +151,7 @@ function Information(props) {
                 if (index === 0) {
                   return <InputForm
                     key={index}
-                    label={item} 
+                    label={item}
                     tring={props.company}
                     handleChange={(e) => { props.setCompany(e.target.value) }}
                   />;
@@ -164,7 +174,7 @@ function Information(props) {
                       props.setNumber3(e.target.value);
                       if (number4 <= newValue) {
                         props.setNumber4(e.target.value);
-                      } 
+                      }
                     }}
                   />;
                 }
@@ -173,7 +183,7 @@ function Information(props) {
                     key={index}
                     label={item}
                     nr={props.number4}
-                    handleNumberChange={(e) => {if(props.number3 <= e.target.value) props.setNumber4(e.target.value) }} />;
+                    handleNumberChange={(e) => { if (props.number3 <= e.target.value) props.setNumber4(e.target.value) }} />;
                 }
               })}
               <SaveClear handleClick={() => {

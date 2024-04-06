@@ -5,6 +5,7 @@ function InfoContainer(props) {
                 <p>{props.fullName}</p>
                 <p>{props.address}</p>
                 <p>{props.email}</p>
+                <p>{props.phoneNumber}</p>
             </div>
         </div>
     )

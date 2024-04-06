@@ -6,6 +6,7 @@ function App() {
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [highschool, setHighschool] = useState("");
   const [university, setUniversity] = useState("");
   const [number, setEducationStartingYear] = useState(1900);
@@ -17,11 +18,13 @@ function App() {
   const [passedFullName, setPassedFullName] = useState('');
   const [passedAddress, setPassedAddress] = useState('');
   const [passedEmail, setPassedEmail] = useState('');
+  const [passedPhoneNumber, setPassedPhoneNumber] = useState('');
 
   function saveGeneralContent() {
     setPassedFullName(fullName);
     setPassedAddress(address);
     setPassedEmail(email);
+    setPassedPhoneNumber(phoneNumber);
   }
 
   return (
@@ -29,21 +32,23 @@ function App() {
       <div className="min-h-screen py-2 flex flex-row bg-gray-600 justify-center gap-8">
         <div className=" flex flex-col gap-4">
           {
-            ["general",
+            ["personal information",
               "education",
               "experience"
             ].map((item, index) => {
-              if (item === "general") {
+              if (item === "personal information") {
                 return <Information
                   key={index}
                   name={item}
                   fullName={fullName}
                   address={address}
                   email={email}
+                  phoneNumber={phoneNumber}
                   setFullName={setFullName}
                   setAddress={setAddress}
                   setEmail={setEmail}
-                  saveButton = {saveGeneralContent}
+                  setPhoneNumber={setPhoneNumber}
+                  saveButton={saveGeneralContent}
                 ></Information>
               }
               else if (item === "education") {
@@ -60,24 +65,24 @@ function App() {
                   setNumber2={setEducationFinishingYear}
                 ></Information>
               }
-                else if (item === "experience") {
-                  return <Information
+              else if (item === "experience") {
+                return <Information
                   key={index}
                   name={item}
-                  company = {company}
-                  position = {position}
-                  number3 = {number3}
-                  number4 = {number4}
-                  setCompany = {setCompany}
-                  setPosition = {setPosition}
-                  setNumber3 = {setNumber3}
-                  setNumber4 = {setNumber4}
+                  company={company}
+                  position={position}
+                  number3={number3}
+                  number4={number4}
+                  setCompany={setCompany}
+                  setPosition={setPosition}
+                  setNumber3={setNumber3}
+                  setNumber4={setNumber4}
                 ></Information>
-                }
               }
+            }
             )}
         </div>
-        <InfoContainer fullName = {passedFullName} address = {passedAddress} email = {passedEmail}/>
+        <InfoContainer fullName={passedFullName} address={passedAddress} email={passedEmail} phoneNumber={passedPhoneNumber} />
       </div>
     </div>
   );
