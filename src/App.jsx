@@ -7,6 +7,7 @@ function App() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [professionalStatement, setProfessionalStatement] = useState("");
   const [highschool, setHighschool] = useState("");
   const [university, setUniversity] = useState("");
   const [number, setEducationStartingYear] = useState(1900);
@@ -19,6 +20,7 @@ function App() {
   const [passedAddress, setPassedAddress] = useState('');
   const [passedEmail, setPassedEmail] = useState('');
   const [passedPhoneNumber, setPassedPhoneNumber] = useState('');
+  const [passedProfessionalStatement, setPassedProfessionalStatement] = useState('');
 
   function saveGeneralContent() {
     setPassedFullName(fullName);
@@ -27,12 +29,17 @@ function App() {
     setPassedPhoneNumber(phoneNumber);
   }
 
+  function saveProfessionalStatement() {
+    setPassedProfessionalStatement(professionalStatement);
+  }
+
   return (
     <div>
       <div className="min-h-screen py-2 flex flex-row bg-gray-600 justify-center gap-8">
         <div className=" flex flex-col gap-4">
           {
             ["personal information",
+             "Professional statement",
               "education",
               "experience"
             ].map((item, index) => {
@@ -49,6 +56,15 @@ function App() {
                   setEmail={setEmail}
                   setPhoneNumber={setPhoneNumber}
                   saveButton={saveGeneralContent}
+                ></Information>
+              }
+              else if (item === "Professional statement") {
+                return <Information
+                key = {index}
+                name = {item}
+                professionalStatement = {professionalStatement}
+                setProfessionalStatement = {setProfessionalStatement}
+                saveButton = {saveProfessionalStatement}
                 ></Information>
               }
               else if (item === "education") {
@@ -82,7 +98,7 @@ function App() {
             }
             )}
         </div>
-        <InfoContainer fullName={passedFullName} address={passedAddress} email={passedEmail} phoneNumber={passedPhoneNumber} />
+        <InfoContainer fullName={passedFullName} address={passedAddress} email={passedEmail} phoneNumber={passedPhoneNumber} professionalStatement = {passedProfessionalStatement}/>
       </div>
     </div>
   );

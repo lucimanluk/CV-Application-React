@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Information(props) {
 
-  const [value, setValue] = useState(true);
+  const [value, setValue] = useState(false);
 
   function handleClick() {
     setValue(!value);
@@ -72,130 +72,146 @@ function Information(props) {
             </>
           ) : null}
         </>
+      ) : props.name === "Professional statement" ? (
+        <>
+        <Preview name="Professional statement" value={value} handleClick={handleClick} />
+        {value === true ? (
+          <>
+          <InputForm
+            label={props.name}
+            string={props.professionalStatement}
+            handleChange={(e) => { props.setProfessionalStatement(e.target.value) }}
+          />
+          <SaveClear
+      handleClick={() => {props.setProfessionalStatement("");}}
+      handleClick2={props.saveButton}/>
+      </>
+      ) : null}
+      </>
       ) : props.name === "education" ? (
-        <>
-          <Preview name="Education" value={value} handleClick={handleClick} />
-          {value === true ? (
-            <>
-              {[
-                "Highschool",
-                "University name",
-                "Starting year",
-                "Finishing year",
-              ].map((item, index) => {
-                if (index === 0) {
-                  return (
-                    <InputForm
-                      key={index}
-                      label={item}
-                      string={props.highschool}
-                      handleChange={(e) => { props.setHighschool(e.target.value) }}
-                    />
-                  );
-                } else if (index === 1) {
-                  return (
-                    <InputForm
-                      key={index}
-                      label={item}
-                      string={props.university}
-                      handleChange={(e) => { props.setUniversity(e.target.value) }}
-                    />
-                  );
-                } else if (index === 2) {
-                  return (
-                    <InputForm
-                      key={index}
-                      label={item}
-                      number={props.number}
-                      handleNumberChange={(e) => {
-                        const newValue = e.target.value;
-                        props.setNumber(e.target.value);
-                        if (number2 <= newValue) {
-                          props.setNumber2(e.target.value);
-                        }
-                      }}
-                    />
-                  );
-                } else if (index === 3) {
-                  return (
-                    <InputForm
-                      key={index}
-                      label={item}
-                      nr={props.number2}
-                      handleNumberChange={(e) => { if (props.number <= e.target.value) props.setNumber2(e.target.value) }}
-                    />
-                  )
-                }
-              })}
-              <SaveClear handleClick={() => {
-                props.setHighschool("");
-                props.setUniversity("");
-                props.setNumber(1900);
-                props.setNumber2(1900);
-              }}
-              />
-            </>
-          ) : null}
-        </>
-      ) : props.name === "experience" ? (
-        <>
-          <Preview name="Experience" value={value} handleClick={handleClick} />
-          {value === true ? (
-            <>
-              {[
-                "Company name",
-                "Position",
-                "Starting year",
-                "Finishing year"
-              ].map((item, index) => {
-                if (index === 0) {
-                  return <InputForm
+      <>
+        <Preview name="Education" value={value} handleClick={handleClick} />
+        {value === true ? (
+          <>
+            {[
+              "Highschool",
+              "University name",
+              "Starting year",
+              "Finishing year",
+            ].map((item, index) => {
+              if (index === 0) {
+                return (
+                  <InputForm
                     key={index}
                     label={item}
-                    tring={props.company}
-                    handleChange={(e) => { props.setCompany(e.target.value) }}
-                  />;
-                }
-                else if (index === 1) {
-                  return <InputForm
+                    string={props.highschool}
+                    handleChange={(e) => { props.setHighschool(e.target.value) }}
+                  />
+                );
+              } else if (index === 1) {
+                return (
+                  <InputForm
                     key={index}
                     label={item}
-                    string={props.position}
-                    handleChange={(e) => { props.setPosition(e.target.value) }}
-                  />;
-                }
-                else if (index === 2) {
-                  return <InputForm
+                    string={props.university}
+                    handleChange={(e) => { props.setUniversity(e.target.value) }}
+                  />
+                );
+              } else if (index === 2) {
+                return (
+                  <InputForm
                     key={index}
                     label={item}
-                    number={props.number3}
+                    number={props.number}
                     handleNumberChange={(e) => {
                       const newValue = e.target.value;
-                      props.setNumber3(e.target.value);
-                      if (number4 <= newValue) {
-                        props.setNumber4(e.target.value);
+                      props.setNumber(e.target.value);
+                      if (number2 <= newValue) {
+                        props.setNumber2(e.target.value);
                       }
                     }}
-                  />;
-                }
-                else if (index === 3) {
-                  return <InputForm
+                  />
+                );
+              } else if (index === 3) {
+                return (
+                  <InputForm
                     key={index}
                     label={item}
-                    nr={props.number4}
-                    handleNumberChange={(e) => { if (props.number3 <= e.target.value) props.setNumber4(e.target.value) }} />;
-                }
-              })}
-              <SaveClear handleClick={() => {
-                props.setCompany("");
-                props.setPosition("");
-                props.setNumber3(1900);
-                props.setNumber4(1900);
-              }}
-              />
-            </>
-          ) : null}
-        </>
+                    nr={props.number2}
+                    handleNumberChange={(e) => { if (props.number <= e.target.value) props.setNumber2(e.target.value) }}
+                  />
+                )
+              }
+            })}
+            <SaveClear handleClick={() => {
+              props.setHighschool("");
+              props.setUniversity("");
+              props.setNumber(1900);
+              props.setNumber2(1900);
+            }}
+            />
+          </>
+        ) : null}
+      </>
+      ) : props.name === "experience" ? (
+      <>
+        <Preview name="Experience" value={value} handleClick={handleClick} />
+        {value === true ? (
+          <>
+            {[
+              "Company name",
+              "Position",
+              "Starting year",
+              "Finishing year"
+            ].map((item, index) => {
+              if (index === 0) {
+                return <InputForm
+                  key={index}
+                  label={item}
+                  tring={props.company}
+                  handleChange={(e) => { props.setCompany(e.target.value) }}
+                />;
+              }
+              else if (index === 1) {
+                return <InputForm
+                  key={index}
+                  label={item}
+                  string={props.position}
+                  handleChange={(e) => { props.setPosition(e.target.value) }}
+                />;
+              }
+              else if (index === 2) {
+                return <InputForm
+                  key={index}
+                  label={item}
+                  number={props.number3}
+                  handleNumberChange={(e) => {
+                    const newValue = e.target.value;
+                    props.setNumber3(e.target.value);
+                    if (number4 <= newValue) {
+                      props.setNumber4(e.target.value);
+                    }
+                  }}
+                />;
+              }
+              else if (index === 3) {
+                return <InputForm
+                  key={index}
+                  label={item}
+                  nr={props.number4}
+                  handleNumberChange={(e) => { if (props.number3 <= e.target.value) props.setNumber4(e.target.value) }} />;
+              }
+            })}
+            <SaveClear handleClick={() => {
+              props.setCompany("");
+              props.setPosition("");
+              props.setNumber3(1900);
+              props.setNumber4(1900);
+            }}
+            />
+          </>
+        ) : null}
+      </>
       ) : null}
     </div>
   );
