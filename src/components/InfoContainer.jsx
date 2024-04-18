@@ -1,12 +1,15 @@
 function InfoContainer(props) {
     return (
-        <div className="w-[33%] min-h-[880px] max-h-[880px] bg-white break-words p-2">
-            <div>
-                <p>{props.fullName}</p>
+        <div className="w-[33%] min-h-[880px] max-h-[880px] bg-white p-2">
+            <div className="flex flex-col justify-center">
+                <div className="break-words w-[33%]">
+                <p className="font-bold text-2xl">{props.fullName}</p>
+                </div>
+                <div>
                 <p>{props.address}</p>
                 <p>{props.email}</p>
                 <p>{props.phoneNumber}</p>
-                <p>{props.professionalStatement}</p>
+                </div>
             </div>
         </div>
     )

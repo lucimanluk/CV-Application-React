@@ -5,11 +5,11 @@ function InputForm({ label, handleChange, string, number, handleNumberChange, nr
       {label != "Professional statement" ? (
       <label htmlFor={label} className="text-black">
         {label}
-      </label>) : null}
+      </label>) : null  }
       {label === "Starting year" ? (
         <select className="rounded-md border-gray-400 border-2" name="year" id="year" value={number} onChange={handleNumberChange}>
           {[...Array(2025 - 1900)].map((_, index) => {
-            const year = 1900 + index;
+            const year = 1900 + index;                
             return <option key={year} value={year}>{year}</option>;
           })}
         </select>
