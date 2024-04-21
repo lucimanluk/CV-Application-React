@@ -23,10 +23,14 @@ function App() {
   const [passedProfessionalStatement, setPassedProfessionalStatement] = useState('');
 
   function saveGeneralContent() {
+    if(fullName != '' && address != '' && email != '' && phoneNumber != '') {
     setPassedFullName(fullName);
     setPassedAddress(address);
     setPassedEmail(email);
     setPassedPhoneNumber(phoneNumber);
+  } else {
+    console.log("You need to fill all the fields!");
+  }
   }
 
   function saveProfessionalStatement() {
